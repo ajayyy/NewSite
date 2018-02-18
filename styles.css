@@ -25,6 +25,13 @@
   transition: font-size 1s;
 }
 
+.profilepic {
+  vertical-align: middle;
+  
+  overflow: hidden;
+  border-radius: 50%;
+}
+
 .link {
 
   padding: 20;
