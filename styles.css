@@ -32,6 +32,10 @@
   border-radius: 50%;
 }
 
+a {
+  text-decoration: none;
+}
+
 .link {
 
   padding: 20;
