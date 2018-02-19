@@ -25,6 +25,20 @@
   transition: font-size 1s;
 }
 
+.subtitle {
+  font-family: sans-serif;
+  font-size: 40;
+  color: #dad8d8;
+
+  transition: font-size 0.4s;
+}
+
+.subtitle:hover {
+  font-size: 50;
+
+  transition: font-size 0.4s;
+}
+
 .profilepic {
   vertical-align: middle;
 
