@@ -40,7 +40,7 @@ function loadData(hash) {
           if(result[i].category === 'utopian-io' && result[i].author === "ajayyy"){
             //if it does not exist in the blacklist
             if (blacklist.indexOf(result[i].permlink) < 0) {
-              document.getElementById('recentPostTitle').innerHTML += "<a href='#" + result[i].permlink + "' onclick='loadData(\"" + result[i].permlink + "\")'> " + result[i].title + "</a><br/><br/>";
+              document.getElementById('recentPostTitle').innerHTML += "<a href='#" + result[i].permlink + "'> " + result[i].title + "</a><br/><br/>";
             }
           }
         }
@@ -53,3 +53,8 @@ function loadData(hash) {
 }
 
 loadData(window.location.hash.substr(1));
+
+//respond to back button
+window.addEventListener("hashchange", function(e) {
+  loadData(window.location.hash.substr(1));
+})
