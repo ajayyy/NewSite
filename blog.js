@@ -1,4 +1,7 @@
 
+//is this page currently on the home page
+var home = false;
+
 //list of posts to remove from view
 var blacklist = ['exclude-self-votes-from-human-input-for-bot', 'youtube-watch-history-statistics-viewer-logo', '3d-models-for-voster-coaster-food-stalls', 'adding-commands-to-a-discord-bot'];
 
@@ -8,7 +11,7 @@ function loadData(hash) {
 
   var username = 'ajayyy';
 
-  if(hash !== "") {
+  if(hash !== "" && hash !== "/home") {
     //get the post based on the hash provided
     steem.api.getContent(username, hash, function(err, result) {
       if(!err) {
@@ -24,10 +27,20 @@ function loadData(hash) {
         //highlight code blocks
         var blocks = document.querySelectorAll('pre code:not(.hljs)');
         Array.prototype.forEach.call(blocks, hljs.highlightBlock);
+
+        //set that the page is not on the home page
+        home = false;
       }
     })
   } else {
-    if(document.getElementById('recentPostTitle') !== null){
+    //check if the home button has been hit while already on the home page
+    if (hash === "/home" && home){
+      window.location.href = "./index.html";
+    } else if (hash === "/home") {
+      window.location.href = "#";
+    }
+
+    if (document.getElementById('recentPostTitle') !== null){
       document.getElementById('recentPostTitle').innerHTML = "";
       document.getElementById('recentPostBody').innerHTML = "<center> <p> Loading... </p> </center>";
     }
@@ -49,6 +62,9 @@ function loadData(hash) {
 
         //clear body of "Loading..."
         document.getElementById('recentPostBody').innerHTML = "";
+
+        //set that the page is on the home page
+        home = true;
       }
     });
   }
