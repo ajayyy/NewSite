@@ -67,7 +67,7 @@ a {
   transition: height 0.2s;
 }
 
-#contact {
+#contact,.smalllink {
   font-family: sans-serif;
   font-size: 25;
   color: #e8e8e8;
