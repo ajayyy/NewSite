@@ -1,4 +1,7 @@
 
+//list of posts to remove from view
+var blacklist = ['exclude-self-votes-from-human-input-for-bot', 'youtube-watch-history-statistics-viewer-logo', '3d-models-for-voster-coaster-food-stalls', 'adding-commands-to-a-discord-bot'];
+
 function loadData(hash) {
   //setup markdown-it
   var md = window.markdownit();
@@ -35,7 +38,10 @@ function loadData(hash) {
       if(!err) {
         for(var i = 0; i < result.length; i++) {
           if(result[i].category === 'utopian-io' && result[i].author === "ajayyy"){
-            document.getElementById('recentPostTitle').innerHTML += "<a href='#" + result[i].permlink + "' onclick='loadData(\"" + result[i].permlink + "\")'> " + result[i].title + "</a><br/><br/>";
+            //if it does not exist in the blacklist
+            if (blacklist.indexOf(result[i].permlink) < 0) {
+              document.getElementById('recentPostTitle').innerHTML += "<a href='#" + result[i].permlink + "' onclick='loadData(\"" + result[i].permlink + "\")'> " + result[i].title + "</a><br/><br/>";
+            }
           }
         }
 
