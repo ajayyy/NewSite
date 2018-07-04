@@ -9,10 +9,12 @@ function loadData(hash) {
   var username = 'ajayyy';
 
   if(hash !== "") {
+    //get the post based on the hash provided
     steem.api.getContent(username, hash, function(err, result) {
       if(!err) {
         document.getElementById('recentPostTitle').innerHTML = result.title;
 
+        //convert the markdown to HTML
         var body = md.render(result.body);
         //delete the "posted on utopian.io" footer
         body = body.split('<p>&lt;br /&gt;&lt;hr/&gt;&lt;em&gt;')[0];
