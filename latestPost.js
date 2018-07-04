@@ -7,6 +7,9 @@ var query = {
   category: 'utopian-io'
 }
 
+//list of posts to remove from view
+var blacklist = ['exclude-self-votes-from-human-input-for-bot', 'youtube-watch-history-statistics-viewer-logo', '3d-models-for-voster-coaster-food-stalls', 'adding-commands-to-a-discord-bot'];
+
 steem.api.getDiscussionsByBlog(query, function(err, result) {
   if(!err){
 
@@ -15,7 +18,7 @@ steem.api.getDiscussionsByBlog(query, function(err, result) {
 
     //find the post with the specified tags
     for(var i = 0; i < result.length; i++) {
-      if(result[i].category === 'utopian-io' && JSON.parse(result[i].json_metadata).tags.indexOf('development')  > -1){
+      if(result[i].category === 'utopian-io' && JSON.parse(result[i].json_metadata).tags.indexOf('development')  > -1 && blacklist.indexOf(result[i].permlink) < 0 && result[i].author === "ajayyy"){
         post = result[i];
         break;
       }
